@@ -45,22 +45,22 @@ const Dashboard = () => {
   if (loading) return <Loading type="cards" />;
   if (error) return <Error message={error} onRetry={loadData} />;
 
-  const activeStudents = students.filter(s => s.status === "active").length;
+const activeStudents = students.filter(s => s.status_c === "active").length;
   const totalStudents = students.length;
   
   const recentAttendance = attendance.filter(a => {
-    const date = new Date(a.date);
+    const date = new Date(a.date_c);
     const today = new Date();
     const daysDiff = Math.floor((today - date) / (1000 * 60 * 60 * 24));
     return daysDiff <= 7;
   });
   
-  const presentCount = recentAttendance.filter(a => a.status === "present").length;
+  const presentCount = recentAttendance.filter(a => a.status_c === "present").length;
   const attendanceRate = recentAttendance.length > 0 
     ? ((presentCount / recentAttendance.length) * 100).toFixed(1)
     : 0;
 
-  const totalScore = grades.reduce((sum, g) => sum + ((g.score / g.maxScore) * 100), 0);
+  const totalScore = grades.reduce((sum, g) => sum + ((g.score_c / g.max_score_c) * 100), 0);
   const averageGrade = grades.length > 0 
     ? (totalScore / grades.length).toFixed(1)
     : 0;

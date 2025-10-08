@@ -5,40 +5,53 @@ import Button from "@/components/atoms/Button";
 import FormField from "@/components/molecules/FormField";
 
 const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    dateOfBirth: "",
-    enrollmentDate: "",
-    classId: "1",
-    status: "active",
-    address: "",
-    guardianName: "",
-    guardianContact: "",
-    photo: ""
+const [formData, setFormData] = useState({
+    first_name_c: "",
+    last_name_c: "",
+    email_c: "",
+    phone_c: "",
+    date_of_birth_c: "",
+    enrollment_date_c: "",
+    class_id_c: "1",
+    status_c: "active",
+    address_c: "",
+    guardian_name_c: "",
+    guardian_contact_c: "",
+    photo_c: ""
   });
 
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (student) {
-      setFormData(student);
+if (student) {
+      setFormData({
+        first_name_c: student.first_name_c || "",
+        last_name_c: student.last_name_c || "",
+        email_c: student.email_c || "",
+        phone_c: student.phone_c || "",
+        date_of_birth_c: student.date_of_birth_c || "",
+        enrollment_date_c: student.enrollment_date_c || "",
+        class_id_c: student.class_id_c?.Id?.toString() || "1",
+        status_c: student.status_c || "active",
+        address_c: student.address_c || "",
+        guardian_name_c: student.guardian_name_c || "",
+        guardian_contact_c: student.guardian_contact_c || "",
+        photo_c: student.photo_c || ""
+      });
     } else {
       setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        dateOfBirth: "",
-        enrollmentDate: new Date().toISOString().split("T")[0],
-        classId: "1",
-        status: "active",
-        address: "",
-        guardianName: "",
-        guardianContact: "",
-        photo: ""
+        first_name_c: "",
+        last_name_c: "",
+        email_c: "",
+        phone_c: "",
+        date_of_birth_c: "",
+        enrollment_date_c: new Date().toISOString().split("T")[0],
+        class_id_c: "1",
+        status_c: "active",
+        address_c: "",
+        guardian_name_c: "",
+        guardian_contact_c: "",
+        photo_c: ""
       });
     }
     setErrors({});
@@ -47,18 +60,18 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
+if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is required";
+    if (!formData.last_name_c?.trim()) newErrors.last_name_c = "Last name is required";
+    if (!formData.email_c?.trim()) {
+      newErrors.email_c = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email_c)) {
+      newErrors.email_c = "Email is invalid";
     }
-    if (!formData.phone.trim()) newErrors.phone = "Phone is required";
-    if (!formData.dateOfBirth) newErrors.dateOfBirth = "Date of birth is required";
-    if (!formData.enrollmentDate) newErrors.enrollmentDate = "Enrollment date is required";
-    if (!formData.guardianName.trim()) newErrors.guardianName = "Guardian name is required";
-    if (!formData.guardianContact.trim()) newErrors.guardianContact = "Guardian contact is required";
+    if (!formData.phone_c?.trim()) newErrors.phone_c = "Phone is required";
+    if (!formData.date_of_birth_c) newErrors.date_of_birth_c = "Date of birth is required";
+    if (!formData.enrollment_date_c) newErrors.enrollment_date_c = "Enrollment date is required";
+    if (!formData.guardian_name_c?.trim()) newErrors.guardian_name_c = "Guardian name is required";
+    if (!formData.guardian_contact_c?.trim()) newErrors.guardian_contact_c = "Guardian contact is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -113,16 +126,18 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                   <FormField
                     label="First Name"
                     required
-                    value={formData.firstName}
-                    onChange={(e) => handleChange("firstName", e.target.value)}
+value={formData.first_name_c}
+                    onChange={(e) => handleChange("first_name_c", e.target.value)}
                     error={errors.firstName}
                     placeholder="Enter first name"
                   />
 
                   <FormField
                     label="Last Name"
-                    required
-                    value={formData.lastName}
+required
+                    value={formData.last_name_c}
+                    onChange={(e) => handleChange("last_name_c", e.target.value)}
+                    error={errors.last_name_c}
                     onChange={(e) => handleChange("lastName", e.target.value)}
                     error={errors.lastName}
                     placeholder="Enter last name"
@@ -132,8 +147,11 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField
                     label="Email"
-                    type="email"
+type="email"
                     required
+                    value={formData.email_c}
+                    onChange={(e) => handleChange("email_c", e.target.value)}
+                    error={errors.email_c}
                     value={formData.email}
                     onChange={(e) => handleChange("email", e.target.value)}
                     error={errors.email}
@@ -144,8 +162,9 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                     label="Phone"
                     type="tel"
                     required
-                    value={formData.phone}
-                    onChange={(e) => handleChange("phone", e.target.value)}
+value={formData.phone_c}
+                    onChange={(e) => handleChange("phone_c", e.target.value)}
+                    error={errors.phone_c}
                     error={errors.phone}
                     placeholder="(555) 123-4567"
                   />
@@ -156,16 +175,19 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                     label="Date of Birth"
                     type="date"
                     required
-                    value={formData.dateOfBirth}
-                    onChange={(e) => handleChange("dateOfBirth", e.target.value)}
+value={formData.date_of_birth_c}
+                    onChange={(e) => handleChange("date_of_birth_c", e.target.value)}
+                    error={errors.date_of_birth_c}
                     error={errors.dateOfBirth}
                   />
 
                   <FormField
                     label="Enrollment Date"
                     type="date"
-                    required
-                    value={formData.enrollmentDate}
+required
+                    value={formData.enrollment_date_c}
+                    onChange={(e) => handleChange("enrollment_date_c", e.target.value)}
+                    error={errors.enrollment_date_c}
                     onChange={(e) => handleChange("enrollmentDate", e.target.value)}
                     error={errors.enrollmentDate}
                   />
@@ -177,7 +199,8 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                       Class <span className="text-error">*</span>
                     </label>
                     <select
-                      value={formData.classId}
+value={formData.class_id_c}
+                      onChange={(e) => handleChange("class_id_c", e.target.value)}
                       onChange={(e) => handleChange("classId", e.target.value)}
                       className="w-full px-4 py-2.5 border-2 border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
                     >
@@ -192,7 +215,8 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                       Status <span className="text-error">*</span>
                     </label>
                     <select
-                      value={formData.status}
+value={formData.status_c}
+                      onChange={(e) => handleChange("status_c", e.target.value)}
                       onChange={(e) => handleChange("status", e.target.value)}
                       className="w-full px-4 py-2.5 border-2 border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
                     >
@@ -205,8 +229,8 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
 
                 <FormField
                   label="Address"
-                  value={formData.address}
-                  onChange={(e) => handleChange("address", e.target.value)}
+value={formData.address_c}
+                  onChange={(e) => handleChange("address_c", e.target.value)}
                   placeholder="Enter full address"
                 />
 
@@ -214,8 +238,9 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                   <FormField
                     label="Guardian Name"
                     required
-                    value={formData.guardianName}
-                    onChange={(e) => handleChange("guardianName", e.target.value)}
+value={formData.guardian_name_c}
+                    onChange={(e) => handleChange("guardian_name_c", e.target.value)}
+                    error={errors.guardian_name_c}
                     error={errors.guardianName}
                     placeholder="Enter guardian name"
                   />
@@ -223,8 +248,10 @@ const StudentModal = ({ isOpen, onClose, onSubmit, student }) => {
                   <FormField
                     label="Guardian Contact"
                     type="tel"
-                    required
-                    value={formData.guardianContact}
+required
+                    value={formData.guardian_contact_c}
+                    onChange={(e) => handleChange("guardian_contact_c", e.target.value)}
+                    error={errors.guardian_contact_c}
                     onChange={(e) => handleChange("guardianContact", e.target.value)}
                     error={errors.guardianContact}
                     placeholder="(555) 123-4567"

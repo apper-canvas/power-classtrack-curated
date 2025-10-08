@@ -39,7 +39,7 @@ const Classes = () => {
   if (error) return <Error message={error} onRetry={loadData} />;
 
   const getClassStudents = (classId) => {
-    return students.filter(s => s.classId === classId.toString() && s.status === "active");
+return students.filter(s => s.class_id_c?.Id === classId && s.status_c === "active");
   };
 
   return (
@@ -68,8 +68,8 @@ const Classes = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {classes.map((classItem) => {
-            const classStudents = getClassStudents(classItem.Id);
-            const enrollmentRate = (classStudents.length / classItem.capacity) * 100;
+const classStudents = getClassStudents(classItem.Id);
+            const enrollmentRate = (classStudents.length / classItem.capacity_c) * 100;
 
             return (
               <div
@@ -79,16 +79,16 @@ const Classes = () => {
                 <div className="bg-gradient-to-r from-primary to-accent p-6 text-white">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold mb-1">{classItem.name}</h3>
-                      <p className="text-sm opacity-90">Section {classItem.section}</p>
+<h3 className="text-2xl font-bold mb-1">{classItem.name_c}</h3>
+                      <p className="text-sm opacity-90">Section {classItem.section_c}</p>
                     </div>
                     <div className="bg-white/20 backdrop-blur-sm p-3 rounded-lg">
                       <ApperIcon name="BookOpen" className="w-6 h-6" />
                     </div>
                   </div>
                   <div className="flex items-center justify-between text-sm opacity-90">
-                    <span>Academic Year {classItem.year}</span>
-                    <span>Teacher ID: {classItem.teacherId}</span>
+<span>Academic Year {classItem.year_c}</span>
+                    <span>Teacher ID: {classItem.teacher_id_c}</span>
                   </div>
                 </div>
 
@@ -99,7 +99,7 @@ const Classes = () => {
                       <p className="text-sm text-secondary">Active Students</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-3xl font-bold text-secondary">{classItem.capacity}</p>
+<p className="text-3xl font-bold text-secondary">{classItem.capacity_c}</p>
                       <p className="text-sm text-secondary">Total Capacity</p>
                     </div>
                   </div>

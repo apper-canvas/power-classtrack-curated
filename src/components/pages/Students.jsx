@@ -43,15 +43,15 @@ const Students = () => {
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(s =>
-        s.firstName.toLowerCase().includes(query) ||
-        s.lastName.toLowerCase().includes(query) ||
-        s.email.toLowerCase().includes(query)
+filtered = filtered.filter(s =>
+        s.first_name_c?.toLowerCase().includes(query) ||
+        s.last_name_c?.toLowerCase().includes(query) ||
+        s.email_c?.toLowerCase().includes(query)
       );
     }
 
     if (statusFilter !== "all") {
-      filtered = filtered.filter(s => s.status === statusFilter);
+filtered = filtered.filter(s => s.status_c === statusFilter);
     }
 
     setFilteredStudents(filtered);

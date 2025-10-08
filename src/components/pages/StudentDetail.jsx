@@ -94,7 +94,7 @@ const StudentDetail = () => {
         <div className="flex flex-col lg:flex-row items-start gap-6">
           <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center flex-shrink-0">
             <span className="text-white text-3xl font-bold">
-              {student.firstName[0]}{student.lastName[0]}
+{student.first_name_c?.[0]}{student.last_name_c?.[0]}
             </span>
           </div>
 
@@ -102,14 +102,14 @@ const StudentDetail = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
               <div>
                 <h1 className="text-3xl font-bold text-slate-900 mb-2">
-                  {student.firstName} {student.lastName}
+{student.first_name_c} {student.last_name_c}
                 </h1>
-                <div className="flex items-center gap-3 flex-wrap">
-                  <Badge variant={getStatusVariant(student.status)}>
-                    {student.status.charAt(0).toUpperCase() + student.status.slice(1)}
+                <div className="flex items-center gap-3 mt-2">
+                  <Badge variant={getStatusVariant(student.status_c)}>
+                    {student.status_c?.charAt(0).toUpperCase() + student.status_c?.slice(1)}
                   </Badge>
                   <span className="text-sm text-secondary">
-                    Grade {student.classId === "1" ? "10A" : student.classId === "2" ? "10B" : "10C"}
+                    Grade {student.class_id_c?.Name || 'N/A'}
                   </span>
                 </div>
               </div>
@@ -126,7 +126,7 @@ const StudentDetail = () => {
                 </div>
                 <div>
                   <p className="text-xs text-secondary font-medium">Email</p>
-                  <p className="text-sm text-slate-900">{student.email}</p>
+<p className="text-sm text-slate-900">{student.email_c}</p>
                 </div>
               </div>
 
@@ -135,8 +135,8 @@ const StudentDetail = () => {
                   <ApperIcon name="Phone" className="w-5 h-5 text-success" />
                 </div>
                 <div>
-                  <p className="text-xs text-secondary font-medium">Phone</p>
-                  <p className="text-sm text-slate-900">{student.phone}</p>
+<p className="text-xs text-secondary font-medium">Phone</p>
+                  <p className="text-sm text-slate-900">{student.phone_c}</p>
                 </div>
               </div>
 
@@ -146,8 +146,8 @@ const StudentDetail = () => {
                 </div>
                 <div>
                   <p className="text-xs text-secondary font-medium">Enrolled</p>
-                  <p className="text-sm text-slate-900">
-                    {format(new Date(student.enrollmentDate), "MMM dd, yyyy")}
+<p className="text-sm text-slate-900">
+                    {format(new Date(student.enrollment_date_c), "MMM dd, yyyy")}
                   </p>
                 </div>
               </div>
@@ -208,7 +208,7 @@ const StudentDetail = () => {
                       <ApperIcon name="Users" className="w-6 h-6 text-info" />
                     </div>
                     <span className="text-3xl font-bold text-info">
-                      {student.classId === "1" ? "10A" : student.classId === "2" ? "10B" : "10C"}
+{student.class_id_c?.Name || 'N/A'}
                     </span>
                   </div>
                   <p className="text-sm font-semibold text-slate-700">Current Class</p>
@@ -223,13 +223,13 @@ const StudentDetail = () => {
                     <div className="flex justify-between py-2 border-b border-slate-100">
                       <span className="text-sm font-medium text-secondary">Date of Birth</span>
                       <span className="text-sm text-slate-900 font-semibold">
-                        {format(new Date(student.dateOfBirth), "MMMM dd, yyyy")}
+{format(new Date(student.date_of_birth_c), "MMMM dd, yyyy")}
                       </span>
                     </div>
                     <div className="flex justify-between py-2 border-b border-slate-100">
                       <span className="text-sm font-medium text-secondary">Address</span>
                       <span className="text-sm text-slate-900 font-semibold text-right max-w-xs">
-                        {student.address}
+{student.address_c}
                       </span>
                     </div>
                   </div>
@@ -241,13 +241,13 @@ const StudentDetail = () => {
                     <div className="flex justify-between py-2 border-b border-slate-100">
                       <span className="text-sm font-medium text-secondary">Name</span>
                       <span className="text-sm text-slate-900 font-semibold">
-                        {student.guardianName}
+{student.guardian_name_c}
                       </span>
                     </div>
                     <div className="flex justify-between py-2 border-b border-slate-100">
                       <span className="text-sm font-medium text-secondary">Contact</span>
-                      <span className="text-sm text-slate-900 font-semibold">
-                        {student.guardianContact}
+<span className="text-sm text-slate-900 font-semibold">
+                        {student.guardian_contact_c}
                       </span>
                     </div>
                   </div>
@@ -283,15 +283,15 @@ const StudentDetail = () => {
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-slate-900">
-                            {format(new Date(record.date), "MMMM dd, yyyy")}
+{format(new Date(record.date_c), "MMMM dd, yyyy")}
                           </p>
-                          {record.notes && (
-                            <p className="text-xs text-secondary mt-1">{record.notes}</p>
+                          {record.notes_c && (
+                            <p className="text-xs text-secondary mt-1">{record.notes_c}</p>
                           )}
                         </div>
                       </div>
-                      <Badge variant={getAttendanceVariant(record.status)}>
-                        {record.status.charAt(0).toUpperCase() + record.status.slice(1)}
+                      <Badge variant={getAttendanceVariant(record.status_c)}>
+                        {record.status_c?.charAt(0).toUpperCase() + record.status_c?.slice(1)}
                       </Badge>
                     </div>
                   ))}
@@ -326,16 +326,16 @@ const StudentDetail = () => {
                           <ApperIcon name="Award" className="w-5 h-5 text-warning" />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-slate-900">{grade.subject}</p>
-                          <p className="text-xs text-secondary">{grade.term}</p>
+<p className="text-sm font-semibold text-slate-900">{grade.subject_c}</p>
+                          <p className="text-xs text-secondary">{grade.term_c}</p>
                         </div>
                       </div>
                       <div className="text-right">
                         <div className="flex items-center gap-3">
                           <span className="text-2xl font-bold text-slate-900">
-                            {grade.score}/{grade.maxScore}
+                            {grade.score_c}/{grade.max_score_c}
                           </span>
-                          <Badge variant="success">{grade.letterGrade}</Badge>
+                          <Badge variant="success">{grade.letter_grade_c}</Badge>
                         </div>
                         <p className="text-xs text-secondary mt-1">
                           {((grade.score / grade.maxScore) * 100).toFixed(1)}%

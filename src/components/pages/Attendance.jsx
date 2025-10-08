@@ -25,7 +25,7 @@ const Attendance = () => {
         studentService.getAll(),
         attendanceService.getAll()
       ]);
-      setStudents(studentsData.filter(s => s.status === "active"));
+setStudents(studentsData.filter(s => s.status_c === "active"));
       setAttendance(attendanceData);
     } catch (err) {
       setError(err.message || "Failed to load attendance data");
@@ -40,13 +40,13 @@ const Attendance = () => {
 
   const filteredStudents = selectedClass === "all"
     ? students
-    : students.filter(s => s.classId === selectedClass);
+: students.filter(s => s.class_id_c?.Id === parseInt(selectedClass));
 
   const dateStr = format(selectedDate, "yyyy-MM-dd");
 
   const getAttendanceStatus = (studentId) => {
-    const record = attendance.find(
-      a => a.studentId === studentId && a.date === dateStr
+const record = attendance.find(
+      a => a.student_id_c?.Id === studentId && a.date_c === dateStr
     );
     return record?.status || null;
   };
@@ -75,7 +75,7 @@ const Attendance = () => {
   const monthEnd = endOfMonth(selectedDate);
   const monthDays = eachDayOfInterval({ start: monthStart, end: monthEnd });
 
-  const todayAttendance = attendance.filter(a => a.date === format(new Date(), "yyyy-MM-dd"));
+const todayAttendance = attendance.filter(a => a.date_c === format(new Date(), "yyyy-MM-dd"));
   const presentToday = todayAttendance.filter(a => a.status === "present").length;
   const absentToday = todayAttendance.filter(a => a.status === "absent").length;
 
@@ -189,20 +189,20 @@ const Attendance = () => {
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-white text-sm font-bold">
-                            {student.firstName[0]}{student.lastName[0]}
+{student.first_name_c?.[0]}{student.last_name_c?.[0]}
                           </span>
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-slate-900">
-                            {student.firstName} {student.lastName}
+                            {student.first_name_c} {student.last_name_c}
                           </p>
-                          <p className="text-xs text-secondary">{student.email}</p>
+                          <p className="text-xs text-secondary">{student.email_c}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className="text-sm text-slate-900 font-medium">
-                        Grade {student.classId === "1" ? "10A" : student.classId === "2" ? "10B" : "10C"}
+Grade {student.class_id_c?.Name || 'N/A'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center">
@@ -263,8 +263,8 @@ const Attendance = () => {
           ))}
           {monthDays.map((day) => {
             const dayStr = format(day, "yyyy-MM-dd");
-            const dayAttendance = attendance.filter(a => a.date === dayStr);
-            const presentCount = dayAttendance.filter(a => a.status === "present").length;
+const dayAttendance = attendance.filter(a => a.date_c === dayStr);
+            const presentCount = dayAttendance.filter(a => a.status_c === "present").length;
             const hasAttendance = dayAttendance.length > 0;
             
             return (

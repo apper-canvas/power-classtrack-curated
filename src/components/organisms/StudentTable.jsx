@@ -58,14 +58,14 @@ const StudentTable = ({ students, onEdit, onDelete }) => {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-sm font-bold">
-                        {student.firstName[0]}{student.lastName[0]}
+{student.first_name_c?.[0]}{student.last_name_c?.[0]}
                       </span>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
-                        {student.firstName} {student.lastName}
+<p className="text-sm font-semibold text-slate-900">
+                        {student.first_name_c} {student.last_name_c}
                       </p>
-                      <p className="text-xs text-secondary">{student.email}</p>
+                      <p className="text-xs text-secondary">{student.email_c}</p>
                     </div>
                   </div>
                 </td>
@@ -73,22 +73,22 @@ const StudentTable = ({ students, onEdit, onDelete }) => {
                   <div className="flex items-center gap-2">
                     <ApperIcon name="BookOpen" size={16} className="text-secondary" />
                     <span className="text-sm text-slate-900 font-medium">
-                      Grade {student.classId === "1" ? "10A" : student.classId === "2" ? "10B" : "10C"}
+Grade {student.class_id_c?.Name || 'N/A'}
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{student.phone}</div>
-                  <div className="text-xs text-secondary">{student.guardianName}</div>
+<td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm text-slate-900">{student.phone_c}</div>
+                  <div className="text-xs text-secondary">{student.guardian_name_c}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className="text-sm text-slate-900">
-                    {format(new Date(student.enrollmentDate), "MMM dd, yyyy")}
+{format(new Date(student.enrollment_date_c), "MMM dd, yyyy")}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <Badge variant={getStatusVariant(student.status)}>
-                    {student.status.charAt(0).toUpperCase() + student.status.slice(1)}
+<Badge variant={getStatusVariant(student.status_c)}>
+                    {student.status_c?.charAt(0).toUpperCase() + student.status_c?.slice(1)}
                   </Badge>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">

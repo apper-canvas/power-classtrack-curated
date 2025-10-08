@@ -25,7 +25,7 @@ const Grades = () => {
         studentService.getAll(),
         gradeService.getAll()
       ]);
-      setStudents(studentsData.filter(s => s.status === "active"));
+setStudents(studentsData.filter(s => s.status_c === "active"));
       setGrades(gradesData);
     } catch (err) {
       setError(err.message || "Failed to load grades data");
@@ -45,7 +45,7 @@ const Grades = () => {
 
   const getStudentGrade = (studentId, subject) => {
     return grades.find(
-      g => g.studentId === studentId && g.subject === subject && g.term === selectedTerm
+g => g.student_id_c?.Id === studentId && g.subject_c === subject && g.term_c === selectedTerm
     );
   };
 
@@ -58,12 +58,12 @@ const Grades = () => {
 
   const calculateStudentAverage = (studentId) => {
     const studentGrades = grades.filter(
-      g => g.studentId === studentId && g.term === selectedTerm
+g => g.student_id_c?.Id === studentId && g.term_c === selectedTerm
     );
     if (studentGrades.length === 0) return 0;
     
     const total = studentGrades.reduce(
-      (sum, g) => sum + ((g.score / g.maxScore) * 100),
+      (sum, g) => sum + ((g.score_c / g.max_score_c) * 100),
       0
     );
     return (total / studentGrades.length).toFixed(1);
@@ -100,7 +100,7 @@ const Grades = () => {
               <ApperIcon name="Award" className="w-6 h-6 text-success" />
             </div>
             <span className="text-3xl font-bold text-success">
-              {grades.filter(g => g.letterGrade.startsWith("A")).length}
+{grades.filter(g => g.letter_grade_c?.startsWith("A")).length}
             </span>
           </div>
           <p className="text-sm font-semibold text-slate-700">A Grades</p>
@@ -112,7 +112,7 @@ const Grades = () => {
               <ApperIcon name="TrendingUp" className="w-6 h-6 text-info" />
             </div>
             <span className="text-3xl font-bold text-info">
-              {grades.filter(g => g.letterGrade.startsWith("B")).length}
+{grades.filter(g => g.letter_grade_c?.startsWith("B")).length}
             </span>
           </div>
           <p className="text-sm font-semibold text-slate-700">B Grades</p>
@@ -124,7 +124,7 @@ const Grades = () => {
               <ApperIcon name="BarChart" className="w-6 h-6 text-primary" />
             </div>
             <span className="text-3xl font-bold text-primary">
-              {(grades.reduce((sum, g) => sum + ((g.score / g.maxScore) * 100), 0) / grades.length).toFixed(1)}%
+{(grades.reduce((sum, g) => sum + ((g.score_c / g.max_score_c) * 100), 0) / grades.length).toFixed(1)}%
             </span>
           </div>
           <p className="text-sm font-semibold text-slate-700">Class Average</p>
@@ -165,18 +165,18 @@ const Grades = () => {
                       className={index % 2 === 0 ? "bg-white" : "bg-slate-50/50"}
                     >
                       <td className="px-6 py-4 whitespace-nowrap sticky left-0 bg-inherit">
-                        <div className="flex items-center gap-3">
+<div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center flex-shrink-0">
                             <span className="text-white text-sm font-bold">
-                              {student.firstName[0]}{student.lastName[0]}
+                              {student.first_name_c?.[0]}{student.last_name_c?.[0]}
                             </span>
                           </div>
                           <div>
-                            <p className="text-sm font-semibold text-slate-900">
-                              {student.firstName} {student.lastName}
+<p className="text-sm font-semibold text-slate-900">
+                              {student.first_name_c} {student.last_name_c}
                             </p>
                             <p className="text-xs text-secondary">
-                              Grade {student.classId === "1" ? "10A" : student.classId === "2" ? "10B" : "10C"}
+                              Grade {student.class_id_c?.Name || 'N/A'}
                             </p>
                           </div>
                         </div>
@@ -187,11 +187,11 @@ const Grades = () => {
                           <td key={subject} className="px-6 py-4 whitespace-nowrap text-center">
                             {grade ? (
                               <div className="flex flex-col items-center gap-1">
-                                <Badge variant={getLetterGradeVariant(grade.letterGrade)}>
-                                  {grade.letterGrade}
+<Badge variant={getLetterGradeVariant(grade.letter_grade_c)}>
+                                  {grade.letter_grade_c}
                                 </Badge>
                                 <span className="text-xs text-secondary">
-                                  {grade.score}/{grade.maxScore}
+                                  {grade.score_c}/{grade.max_score_c}
                                 </span>
                               </div>
                             ) : (
