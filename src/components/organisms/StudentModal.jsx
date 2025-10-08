@@ -120,14 +120,11 @@ value={formData.first_name_c}
                     placeholder="Enter first name"
                   />
 
-                  <FormField
+<FormField
                     label="Last Name"
-required
                     value={formData.last_name_c}
                     onChange={(e) => handleChange("last_name_c", e.target.value)}
                     error={errors.last_name_c}
-                    onChange={(e) => handleChange("lastName", e.target.value)}
-                    error={errors.lastName}
                     placeholder="Enter last name"
                   />
                 </div>
