@@ -1,0 +1,102 @@
+[
+  {
+    "Id": 1,
+    "studentId": 1,
+    "subject": "Mathematics",
+    "term": "Fall 2023",
+    "score": 92,
+    "maxScore": 100,
+    "letterGrade": "A",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 2,
+    "studentId": 1,
+    "subject": "English",
+    "term": "Fall 2023",
+    "score": 88,
+    "maxScore": 100,
+    "letterGrade": "B+",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 3,
+    "studentId": 1,
+    "subject": "Science",
+    "term": "Fall 2023",
+    "score": 95,
+    "maxScore": 100,
+    "letterGrade": "A",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 4,
+    "studentId": 2,
+    "subject": "Mathematics",
+    "term": "Fall 2023",
+    "score": 85,
+    "maxScore": 100,
+    "letterGrade": "B",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 5,
+    "studentId": 2,
+    "subject": "English",
+    "term": "Fall 2023",
+    "score": 90,
+    "maxScore": 100,
+    "letterGrade": "A-",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 6,
+    "studentId": 2,
+    "subject": "Science",
+    "term": "Fall 2023",
+    "score": 87,
+    "maxScore": 100,
+    "letterGrade": "B+",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 7,
+    "studentId": 3,
+    "subject": "Mathematics",
+    "term": "Fall 2023",
+    "score": 78,
+    "maxScore": 100,
+    "letterGrade": "C+",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 8,
+    "studentId": 3,
+    "subject": "English",
+    "term": "Fall 2023",
+    "score": 82,
+    "maxScore": 100,
+    "letterGrade": "B-",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 9,
+    "studentId": 4,
+    "subject": "Mathematics",
+    "term": "Fall 2023",
+    "score": 94,
+    "maxScore": 100,
+    "letterGrade": "A",
+    "date": "2023-12-15"
+  },
+  {
+    "Id": 10,
+    "studentId": 5,
+    "subject": "Mathematics",
+    "term": "Fall 2023",
+    "score": 89,
+    "maxScore": 100,
+    "letterGrade": "B+",
+    "date": "2023-12-15"
+  }
+]
