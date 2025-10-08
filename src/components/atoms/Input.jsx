@@ -5,6 +5,7 @@ const Input = React.forwardRef(({
   className, 
   type = "text",
   error,
+  value = "",
   ...props 
 }, ref) => {
   return (

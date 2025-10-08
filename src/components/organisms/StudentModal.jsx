@@ -60,7 +60,7 @@ if (student) {
   const validateForm = () => {
     const newErrors = {};
 
-if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is required";
+if (!formData.first_name_c?.trim()) newErrors.firstName = "First name is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -181,8 +181,7 @@ Class
                     </label>
                     <select
 value={formData.class_id_c}
-                      onChange={(e) => handleChange("class_id_c", e.target.value)}
-                      onChange={(e) => handleChange("classId", e.target.value)}
+onChange={(e) => handleChange("class_id_c", e.target.value)}
                       className="w-full px-4 py-2.5 border-2 border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
                     >
                       <option value="1">Grade 10A</option>
@@ -197,8 +196,7 @@ Status
                     </label>
                     <select
 value={formData.status_c}
-                      onChange={(e) => handleChange("status_c", e.target.value)}
-                      onChange={(e) => handleChange("status", e.target.value)}
+onChange={(e) => handleChange("status_c", e.target.value)}
                       className="w-full px-4 py-2.5 border-2 border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200"
                     >
                       <option value="active">Active</option>
