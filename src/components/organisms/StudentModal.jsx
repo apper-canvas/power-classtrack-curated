@@ -61,18 +61,6 @@ if (student) {
     const newErrors = {};
 
 if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is required";
-    if (!formData.last_name_c?.trim()) newErrors.last_name_c = "Last name is required";
-    if (!formData.email_c?.trim()) {
-      newErrors.email_c = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email_c)) {
-      newErrors.email_c = "Email is invalid";
-    }
-    if (!formData.phone_c?.trim()) newErrors.phone_c = "Phone is required";
-    if (!formData.date_of_birth_c) newErrors.date_of_birth_c = "Date of birth is required";
-    if (!formData.enrollment_date_c) newErrors.enrollment_date_c = "Enrollment date is required";
-    if (!formData.guardian_name_c?.trim()) newErrors.guardian_name_c = "Guardian name is required";
-    if (!formData.guardian_contact_c?.trim()) newErrors.guardian_contact_c = "Guardian contact is required";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -148,7 +136,6 @@ required
                   <FormField
                     label="Email"
 type="email"
-                    required
                     value={formData.email_c}
                     onChange={(e) => handleChange("email_c", e.target.value)}
                     error={errors.email_c}
@@ -161,7 +148,6 @@ type="email"
                   <FormField
                     label="Phone"
                     type="tel"
-                    required
 value={formData.phone_c}
                     onChange={(e) => handleChange("phone_c", e.target.value)}
                     error={errors.phone_c}
@@ -174,7 +160,6 @@ value={formData.phone_c}
                   <FormField
                     label="Date of Birth"
                     type="date"
-                    required
 value={formData.date_of_birth_c}
                     onChange={(e) => handleChange("date_of_birth_c", e.target.value)}
                     error={errors.date_of_birth_c}
@@ -184,7 +169,6 @@ value={formData.date_of_birth_c}
                   <FormField
                     label="Enrollment Date"
                     type="date"
-required
                     value={formData.enrollment_date_c}
                     onChange={(e) => handleChange("enrollment_date_c", e.target.value)}
                     error={errors.enrollment_date_c}
@@ -196,7 +180,7 @@ required
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Class <span className="text-error">*</span>
+Class
                     </label>
                     <select
 value={formData.class_id_c}
@@ -212,7 +196,7 @@ value={formData.class_id_c}
 
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Status <span className="text-error">*</span>
+Status
                     </label>
                     <select
 value={formData.status_c}
@@ -237,7 +221,6 @@ value={formData.address_c}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField
                     label="Guardian Name"
-                    required
 value={formData.guardian_name_c}
                     onChange={(e) => handleChange("guardian_name_c", e.target.value)}
                     error={errors.guardian_name_c}
@@ -248,7 +231,6 @@ value={formData.guardian_name_c}
                   <FormField
                     label="Guardian Contact"
                     type="tel"
-required
                     value={formData.guardian_contact_c}
                     onChange={(e) => handleChange("guardian_contact_c", e.target.value)}
                     error={errors.guardian_contact_c}
