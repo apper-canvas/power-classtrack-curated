@@ -113,9 +113,9 @@ export const studentService = {
       const response = await apperClient.createRecord('student_c', payload);
 
       if (!response.success) {
-        console.error(response.message);
+console.error(response.message);
         toast.error(response.message);
-        throw new Error(response.message);
+        return [];
       }
 
       if (response.results) {
@@ -165,9 +165,9 @@ try {
       }
 
       throw new Error("No data returned from create operation");
-    } catch (error) {
+} catch (error) {
       console.error("Error creating student:", error?.message || error);
-      throw error;
+      throw new Error(error?.message || "Failed to create student");
     }
   },
 

@@ -20,7 +20,7 @@ const [formData, setFormData] = useState({
     photo_c: ""
   });
 
-  const [errors, setErrors] = useState({});
+const [errors, setErrors] = useState({});
 
   useEffect(() => {
 if (student) {
@@ -60,7 +60,7 @@ if (student) {
   const validateForm = () => {
     const newErrors = {};
 
-if (!formData.first_name_c?.trim()) newErrors.firstName = "First name is required";
+if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -122,9 +122,8 @@ value={formData.first_name_c}
 
 <FormField
                     label="Last Name"
-                    value={formData.last_name_c}
+value={formData.last_name_c}
                     onChange={(e) => handleChange("last_name_c", e.target.value)}
-                    error={errors.last_name_c}
                     placeholder="Enter last name"
                   />
                 </div>
@@ -138,8 +137,7 @@ type="email"
                     error={errors.email_c}
                     value={formData.email}
                     onChange={(e) => handleChange("email", e.target.value)}
-                    error={errors.email}
-                    placeholder="student@school.edu"
+placeholder="student@school.edu"
                   />
 
                   <FormField
@@ -160,7 +158,6 @@ value={formData.phone_c}
 value={formData.date_of_birth_c}
                     onChange={(e) => handleChange("date_of_birth_c", e.target.value)}
                     error={errors.date_of_birth_c}
-                    error={errors.dateOfBirth}
                   />
 
                   <FormField
@@ -168,9 +165,8 @@ value={formData.date_of_birth_c}
                     type="date"
                     value={formData.enrollment_date_c}
                     onChange={(e) => handleChange("enrollment_date_c", e.target.value)}
+onChange={(e) => handleChange("enrollment_date_c", e.target.value)}
                     error={errors.enrollment_date_c}
-                    onChange={(e) => handleChange("enrollmentDate", e.target.value)}
-                    error={errors.enrollmentDate}
                   />
                 </div>
 
@@ -219,7 +215,6 @@ value={formData.address_c}
 value={formData.guardian_name_c}
                     onChange={(e) => handleChange("guardian_name_c", e.target.value)}
                     error={errors.guardian_name_c}
-                    error={errors.guardianName}
                     placeholder="Enter guardian name"
                   />
 
@@ -228,9 +223,8 @@ value={formData.guardian_name_c}
                     type="tel"
                     value={formData.guardian_contact_c}
                     onChange={(e) => handleChange("guardian_contact_c", e.target.value)}
+onChange={(e) => handleChange("guardian_contact_c", e.target.value)}
                     error={errors.guardian_contact_c}
-                    onChange={(e) => handleChange("guardianContact", e.target.value)}
-                    error={errors.guardianContact}
                     placeholder="(555) 123-4567"
                   />
                 </div>
