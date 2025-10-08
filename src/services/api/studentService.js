@@ -133,17 +133,16 @@ export const studentService = {
 
         const newStudent = response.results[0].data;
         
-        try {
+try {
           const syncResult = await apperClient.functions.invoke(
-            import.meta.env.VITE_SYNC_STUDENT_TO_COMPANYHUB,
+            import.meta.env.VITE_SYNC_STUDENT_TO_CLOCKIFY,
             {
               body: JSON.stringify({
                 studentId: newStudent.Id,
                 firstName: newStudent.first_name_c,
                 lastName: newStudent.last_name_c,
                 email: newStudent.email_c,
-                phone: newStudent.phone_c,
-                address: newStudent.address_c
+                phone: newStudent.phone_c
               }),
               headers: {
                 'Content-Type': 'application/json'
@@ -152,14 +151,14 @@ export const studentService = {
           );
 
           if (!syncResult.success) {
-            console.info(`apper_info: Got an error in this function: ${import.meta.env.VITE_SYNC_STUDENT_TO_COMPANYHUB}. The response body is: ${JSON.stringify(syncResult)}.`);
-            toast.warning("Student created but sync to CompanyHub failed");
+            console.info(`apper_info: Got an error in this function: ${import.meta.env.VITE_SYNC_STUDENT_TO_CLOCKIFY}. The response body is: ${JSON.stringify(syncResult)}.`);
+            toast.warning("Student created but sync to Clockify failed");
           } else {
-            toast.success("Student created and synced to CompanyHub!");
+            toast.success("Student created and synced to Clockify!");
           }
         } catch (error) {
-          console.info(`apper_info: Got this error in this function: ${import.meta.env.VITE_SYNC_STUDENT_TO_COMPANYHUB}. The error is: ${error.message}`);
-          toast.warning("Student created but CompanyHub sync encountered an error");
+          console.info(`apper_info: Got this error in this function: ${import.meta.env.VITE_SYNC_STUDENT_TO_CLOCKIFY}. The error is: ${error.message}`);
+          toast.warning("Student created but Clockify sync encountered an error");
         }
 
         return newStudent;
