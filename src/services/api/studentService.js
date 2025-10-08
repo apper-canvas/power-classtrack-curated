@@ -1,4 +1,5 @@
 import studentsData from "@/services/mockData/students.json";
+import { toast } from "react-toastify";
 
 let students = [...studentsData];
 
@@ -17,7 +18,7 @@ export const studentService = {
     return { ...student };
   },
 
-  async create(student) {
+async create(student) {
     await delay(400);
     const maxId = students.length > 0 ? Math.max(...students.map(s => s.Id)) : 0;
     const newStudent = {
@@ -25,6 +26,43 @@ export const studentService = {
       Id: maxId + 1
     };
     students.push(newStudent);
+    
+    // Sync to CompanyHub Contact table
+    try {
+      const { ApperClient } = window.ApperSDK;
+      const apperClient = new ApperClient({
+        apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+        apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+      });
+
+      const syncResult = await apperClient.functions.invoke(
+        import.meta.env.VITE_SYNC_STUDENT_TO_COMPANYHUB,
+        {
+          body: JSON.stringify({
+            studentId: newStudent.Id,
+            firstName: newStudent.firstName,
+            lastName: newStudent.lastName,
+            email: newStudent.email,
+            phone: newStudent.phone,
+            address: newStudent.address
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if (!syncResult.success) {
+        console.info(`apper_info: Got an error in this function: ${import.meta.env.VITE_SYNC_STUDENT_TO_COMPANYHUB}. The response body is: ${JSON.stringify(syncResult)}.`);
+        toast.warning("Student created but sync to CompanyHub failed");
+      } else {
+        toast.success("Student created and synced to CompanyHub!");
+      }
+    } catch (error) {
+      console.info(`apper_info: Got this error in this function: ${import.meta.env.VITE_SYNC_STUDENT_TO_COMPANYHUB}. The error is: ${error.message}`);
+      toast.warning("Student created but CompanyHub sync encountered an error");
+    }
+    
     return { ...newStudent };
   },
 
