@@ -235,7 +235,7 @@ const activeStudents = students.filter(s => s.status_c === "active").length;
               <ApperIcon name="Award" className="w-6 h-6 text-warning group-hover:text-white" />
             </div>
             <span className="text-sm font-semibold text-slate-900">Enter Grades</span>
-          </button>
+</button>
 
           <button
             onClick={() => navigate("/classes")}
@@ -245,6 +245,16 @@ const activeStudents = students.filter(s => s.status_c === "active").length;
               <ApperIcon name="BookOpen" className="w-6 h-6 text-success group-hover:text-white" />
             </div>
             <span className="text-sm font-semibold text-slate-900">Manage Classes</span>
+          </button>
+
+          <button
+            onClick={() => navigate("/curriculum")}
+            className="flex flex-col items-center gap-3 p-6 border-2 border-slate-200 rounded-lg hover:border-accent hover:bg-accent/5 transition-all group"
+          >
+            <div className="bg-accent/10 p-4 rounded-full group-hover:bg-accent group-hover:scale-110 transition-all">
+              <ApperIcon name="Activity" className="w-6 h-6 text-accent group-hover:text-white" />
+            </div>
+            <span className="text-sm font-semibold text-slate-900">Curriculum Activities</span>
           </button>
         </div>
       </div>

@@ -10,13 +10,13 @@ import StudentDetail from "@/components/pages/StudentDetail";
 import Classes from "@/components/pages/Classes";
 import Attendance from "@/components/pages/Attendance";
 import Grades from "@/components/pages/Grades";
+import CurriculumActivities from "@/components/pages/CurriculumActivities";
 import Login from "@/components/pages/Login";
 import Signup from "@/components/pages/Signup";
 import Callback from "@/components/pages/Callback";
 import ErrorPage from "@/components/pages/ErrorPage";
 import ResetPassword from "@/components/pages/ResetPassword";
 import PromptPassword from "@/components/pages/PromptPassword";
-
 export const AuthContext = createContext(null);
 
 function AppContent() {
@@ -133,9 +133,10 @@ function AppContent() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="students" element={<Students />} />
           <Route path="students/:id" element={<StudentDetail />} />
-          <Route path="classes" element={<Classes />} />
+<Route path="classes" element={<Classes />} />
           <Route path="attendance" element={<Attendance />} />
           <Route path="grades" element={<Grades />} />
+          <Route path="curriculum" element={<CurriculumActivities />} />
         </Route>
       </Routes>
       <ToastContainer
