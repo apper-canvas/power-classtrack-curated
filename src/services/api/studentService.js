@@ -1,4 +1,6 @@
 import { toast } from "react-toastify";
+import React from "react";
+import Error from "@/components/ui/Error";
 
 export const studentService = {
   async getAll() {
@@ -9,7 +11,7 @@ export const studentService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       });
 
-      const params = {
+const params = {
         fields: [
           {"field": {"Name": "Name"}},
           {"field": {"Name": "first_name_c"}},
@@ -23,6 +25,7 @@ export const studentService = {
           {"field": {"Name": "guardian_name_c"}},
           {"field": {"Name": "guardian_contact_c"}},
           {"field": {"Name": "photo_c"}},
+          {"field": {"Name": "science_marks_c"}},
           {"field": {"name": "class_id_c"}, "referenceField": {"field": {"Name": "Name"}}}
         ]
       };
@@ -52,7 +55,7 @@ export const studentService = {
       });
 
       const params = {
-        fields: [
+fields: [
           {"field": {"Name": "Name"}},
           {"field": {"Name": "first_name_c"}},
           {"field": {"Name": "last_name_c"}},
@@ -65,6 +68,7 @@ export const studentService = {
           {"field": {"Name": "guardian_name_c"}},
           {"field": {"Name": "guardian_contact_c"}},
           {"field": {"Name": "photo_c"}},
+          {"field": {"Name": "science_marks_c"}},
           {"field": {"name": "class_id_c"}, "referenceField": {"field": {"Name": "Name"}}}
         ]
       };
@@ -92,7 +96,7 @@ export const studentService = {
         apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
       });
 
-      const payload = {
+const payload = {
         records: [{
           Name: `${student.first_name_c} ${student.last_name_c}`,
           first_name_c: student.first_name_c,
@@ -106,7 +110,8 @@ export const studentService = {
           address_c: student.address_c,
           guardian_name_c: student.guardian_name_c,
           guardian_contact_c: student.guardian_contact_c,
-          photo_c: student.photo_c || ""
+          photo_c: student.photo_c || "",
+          science_marks_c: student.science_marks_c ? parseInt(student.science_marks_c) : null
         }]
       };
 
@@ -182,7 +187,7 @@ try {
       const payload = {
         records: [{
           Id: parseInt(id),
-          ...(data.first_name_c && data.last_name_c && { Name: `${data.first_name_c} ${data.last_name_c}` }),
+...(data.first_name_c && data.last_name_c && { Name: `${data.first_name_c} ${data.last_name_c}` }),
           ...(data.first_name_c && { first_name_c: data.first_name_c }),
           ...(data.last_name_c && { last_name_c: data.last_name_c }),
           ...(data.email_c && { email_c: data.email_c }),
@@ -194,7 +199,8 @@ try {
           ...(data.address_c !== undefined && { address_c: data.address_c }),
           ...(data.guardian_name_c && { guardian_name_c: data.guardian_name_c }),
           ...(data.guardian_contact_c && { guardian_contact_c: data.guardian_contact_c }),
-          ...(data.photo_c !== undefined && { photo_c: data.photo_c })
+          ...(data.photo_c !== undefined && { photo_c: data.photo_c }),
+          ...(data.science_marks_c !== undefined && { science_marks_c: data.science_marks_c ? parseInt(data.science_marks_c) : null })
         }]
       };
 
@@ -278,7 +284,7 @@ try {
       });
 
       const params = {
-        fields: [
+fields: [
           {"field": {"Name": "Name"}},
           {"field": {"Name": "first_name_c"}},
           {"field": {"Name": "last_name_c"}},
@@ -290,7 +296,8 @@ try {
           {"field": {"Name": "address_c"}},
           {"field": {"Name": "guardian_name_c"}},
           {"field": {"Name": "guardian_contact_c"}},
-          {"field": {"Name": "photo_c"}},
+{"field": {"Name": "photo_c"}},
+          {"field": {"Name": "science_marks_c"}},
           {"field": {"name": "class_id_c"}, "referenceField": {"field": {"Name": "Name"}}}
         ],
         whereGroups: {

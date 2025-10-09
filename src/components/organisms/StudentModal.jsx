@@ -17,14 +17,15 @@ const [formData, setFormData] = useState({
     address_c: "",
     guardian_name_c: "",
     guardian_contact_c: "",
-    photo_c: ""
+    photo_c: "",
+    science_marks_c: ""
   });
 
 const [errors, setErrors] = useState({});
 
   useEffect(() => {
 if (student) {
-      setFormData({
+setFormData({
         first_name_c: student.first_name_c || "",
         last_name_c: student.last_name_c || "",
         email_c: student.email_c || "",
@@ -36,10 +37,11 @@ if (student) {
         address_c: student.address_c || "",
         guardian_name_c: student.guardian_name_c || "",
         guardian_contact_c: student.guardian_contact_c || "",
-        photo_c: student.photo_c || ""
+        photo_c: student.photo_c || "",
+        science_marks_c: student.science_marks_c?.toString() || ""
       });
     } else {
-      setFormData({
+setFormData({
         first_name_c: "",
         last_name_c: "",
         email_c: "",
@@ -51,7 +53,8 @@ if (student) {
         address_c: "",
         guardian_name_c: "",
         guardian_contact_c: "",
-        photo_c: ""
+        photo_c: "",
+        science_marks_c: ""
       });
     }
     setErrors({});
@@ -202,11 +205,19 @@ onChange={(e) => handleChange("status_c", e.target.value)}
                   </div>
                 </div>
 
-                <FormField
+<FormField
                   label="Address"
 value={formData.address_c}
                   onChange={(e) => handleChange("address_c", e.target.value)}
                   placeholder="Enter full address"
+                />
+                
+                <FormField
+                  label="Science Marks"
+                  type="number"
+                  value={formData.science_marks_c}
+                  onChange={(e) => handleChange("science_marks_c", e.target.value)}
+                  placeholder="Enter science marks"
                 />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
