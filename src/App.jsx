@@ -1,22 +1,20 @@
-import { createContext, useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import React, { createContext, useEffect, useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useDispatch } from 'react-redux';
-import { setUser, clearUser } from './store/userSlice';
-import Layout from "@/components/organisms/Layout";
+import { useDispatch } from "react-redux";
+import { clearUser, setUser } from "@/store/userSlice";
+import PromptPassword from "@/components/pages/PromptPassword";
+import CurriculumActivities from "@/components/pages/CurriculumActivities";
+import Signup from "@/components/pages/Signup";
+import ResetPassword from "@/components/pages/ResetPassword";
 import Dashboard from "@/components/pages/Dashboard";
+import Callback from "@/components/pages/Callback";
+import Login from "@/components/pages/Login";
+import ErrorPage from "@/components/pages/ErrorPage";
 import Students from "@/components/pages/Students";
 import StudentDetail from "@/components/pages/StudentDetail";
-import Classes from "@/components/pages/Classes";
-import Attendance from "@/components/pages/Attendance";
 import Grades from "@/components/pages/Grades";
-import CurriculumActivities from "@/components/pages/CurriculumActivities";
-import Login from "@/components/pages/Login";
-import Signup from "@/components/pages/Signup";
-import Callback from "@/components/pages/Callback";
-import ErrorPage from "@/components/pages/ErrorPage";
-import ResetPassword from "@/components/pages/ResetPassword";
-import PromptPassword from "@/components/pages/PromptPassword";
+import Layout from "@/components/organisms/Layout";
 export const AuthContext = createContext(null);
 
 function AppContent() {
@@ -128,15 +126,13 @@ function AppContent() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/prompt-password/:appId/:emailAddress/:provider" element={<PromptPassword />} />
         <Route path="/reset-password/:appId/:fields" element={<ResetPassword />} />
-        <Route path="/" element={<Layout />}>
+<Route path="/" element={<Layout />}>
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="students" element={<Students />} />
           <Route path="students/:id" element={<StudentDetail />} />
-<Route path="classes" element={<Classes />} />
-          <Route path="attendance" element={<Attendance />} />
           <Route path="grades" element={<Grades />} />
-          <Route path="curriculum" element={<CurriculumActivities />} />
+          <Route path="curriculum-activities" element={<CurriculumActivities />} />
         </Route>
       </Routes>
       <ToastContainer

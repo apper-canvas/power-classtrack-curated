@@ -7,11 +7,10 @@ import ApperIcon from "@/components/ApperIcon";
 const MobileSidebar = ({ isOpen, onClose }) => {
 const navItems = [
     { path: "/dashboard", icon: "LayoutDashboard", label: "Dashboard" },
+{ path: "/", icon: "LayoutDashboard", label: "Dashboard" },
     { path: "/students", icon: "Users", label: "Students" },
     { path: "/classes", icon: "BookOpen", label: "Classes" },
-    { path: "/attendance", icon: "Calendar", label: "Attendance" },
     { path: "/grades", icon: "Award", label: "Grades" },
-    { path: "/curriculum", icon: "Activity", label: "Curriculum" },
   ];
 
   return (
