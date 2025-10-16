@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import FormField from "@/components/molecules/FormField";
@@ -16,14 +16,11 @@ const [formData, setFormData] = useState({
     status_c: "active",
     address_c: "",
     guardian_name_c: "",
-    guardian_contact_c: "",
-    photo_c: "",
-    science_marks_c: ""
+    guardian_contact_c: ""
   });
-
 const [errors, setErrors] = useState({});
 
-  useEffect(() => {
+useEffect(() => {
 if (student) {
 setFormData({
         first_name_c: student.first_name_c || "",
@@ -36,9 +33,7 @@ setFormData({
         status_c: student.status_c || "active",
         address_c: student.address_c || "",
         guardian_name_c: student.guardian_name_c || "",
-        guardian_contact_c: student.guardian_contact_c || "",
-        photo_c: student.photo_c || "",
-        science_marks_c: student.science_marks_c?.toString() || ""
+        guardian_contact_c: student.guardian_contact_c || ""
       });
     } else {
 setFormData({
@@ -52,13 +47,10 @@ setFormData({
         status_c: "active",
         address_c: "",
         guardian_name_c: "",
-        guardian_contact_c: "",
-        photo_c: "",
-        science_marks_c: ""
+        guardian_contact_c: ""
       });
     }
     setErrors({});
-  }, [student, isOpen]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -114,12 +106,12 @@ if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is requ
 
               <form onSubmit={handleSubmit} className="p-6 space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <FormField
+<FormField
                     label="First Name"
                     required
 value={formData.first_name_c}
                     onChange={(e) => handleChange("first_name_c", e.target.value)}
-                    error={errors.firstName}
+                    error={errors.first_name_c}
                     placeholder="Enter first name"
                   />
 
@@ -132,24 +124,21 @@ value={formData.last_name_c}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <FormField
+<FormField
                     label="Email"
 type="email"
                     value={formData.email_c}
                     onChange={(e) => handleChange("email_c", e.target.value)}
                     error={errors.email_c}
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
 placeholder="student@school.edu"
                   />
 
-                  <FormField
+<FormField
                     label="Phone"
                     type="tel"
 value={formData.phone_c}
                     onChange={(e) => handleChange("phone_c", e.target.value)}
                     error={errors.phone_c}
-                    error={errors.phone}
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -163,12 +152,11 @@ value={formData.date_of_birth_c}
                     error={errors.date_of_birth_c}
                   />
 
-                  <FormField
+<FormField
                     label="Enrollment Date"
                     type="date"
                     value={formData.enrollment_date_c}
                     onChange={(e) => handleChange("enrollment_date_c", e.target.value)}
-onChange={(e) => handleChange("enrollment_date_c", e.target.value)}
                     error={errors.enrollment_date_c}
                   />
                 </div>
@@ -210,15 +198,7 @@ onChange={(e) => handleChange("status_c", e.target.value)}
 value={formData.address_c}
                   onChange={(e) => handleChange("address_c", e.target.value)}
                   placeholder="Enter full address"
-                />
-                
-                <FormField
-                  label="Science Marks"
-                  type="number"
-                  value={formData.science_marks_c}
-                  onChange={(e) => handleChange("science_marks_c", e.target.value)}
-                  placeholder="Enter science marks"
-                />
+/>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField
@@ -234,7 +214,6 @@ value={formData.guardian_name_c}
                     type="tel"
                     value={formData.guardian_contact_c}
                     onChange={(e) => handleChange("guardian_contact_c", e.target.value)}
-onChange={(e) => handleChange("guardian_contact_c", e.target.value)}
                     error={errors.guardian_contact_c}
                     placeholder="(555) 123-4567"
                   />
