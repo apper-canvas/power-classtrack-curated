@@ -3,11 +3,11 @@ import { toast } from "react-toastify";
 import { classService } from "@/services/api/classService";
 import { studentService } from "@/services/api/studentService";
 import ApperIcon from "@/components/ApperIcon";
-import ClassModal from "@/components/organisms/ClassModal";
 import Loading from "@/components/ui/Loading";
 import Empty from "@/components/ui/Empty";
 import Error from "@/components/ui/Error";
 import Button from "@/components/atoms/Button";
+import ClassModal from "@/components/organisms/ClassModal";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
@@ -22,11 +22,19 @@ const handleAddClass = () => {
     setIsModalOpen(true);
   };
 
-  const handleSubmitClass = async (classData) => {
+const handleSubmitClass = async (classData) => {
     try {
-      await classService.create(classData);
-      toast.success("Class added successfully");
+      if (editingClass) {
+        // Update existing class
+        await classService.update(editingClass.Id, classData);
+        toast.success("Class updated successfully");
+      } else {
+        // Create new class
+        await classService.create(classData);
+        toast.success("Class added successfully");
+      }
       setIsModalOpen(false);
+      setEditingClass(null);
       
       // Refresh classes list
       const updatedClasses = await classService.getAll();
@@ -37,9 +45,14 @@ const handleAddClass = () => {
     }
   };
 
-  const handleCloseModal = () => {
+const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingClass(null);
+  };
+
+  const handleEditClass = (classItem) => {
+    setEditingClass(classItem);
+    setIsModalOpen(true);
   };
 
   const loadData = async () => {
@@ -150,7 +163,12 @@ const classStudents = getClassStudents(classItem.Id);
                       <ApperIcon name="Users" size={16} className="mr-1" />
                       View Roster
                     </Button>
-                    <Button variant="secondary" size="sm" className="flex-1">
+<Button 
+                      variant="secondary" 
+                      size="sm" 
+                      className="flex-1"
+                      onClick={() => handleEditClass(classItem)}
+                    >
                       <ApperIcon name="Edit" size={16} className="mr-1" />
                       Edit Class
                     </Button>

@@ -5,7 +5,7 @@ import Button from "@/components/atoms/Button";
 import FormField from "@/components/molecules/FormField";
 
 const ClassModal = ({ isOpen, onClose, onSubmit, classData }) => {
-const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name_c: "",
     year_c: "",
     section_c: "",
