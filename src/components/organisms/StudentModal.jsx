@@ -16,7 +16,8 @@ const [formData, setFormData] = useState({
     status_c: "active",
     address_c: "",
     guardian_name_c: "",
-    guardian_contact_c: ""
+    guardian_contact_c: "",
+    notes_c: ""
   });
 const [errors, setErrors] = useState({});
 
@@ -33,7 +34,8 @@ useEffect(() => {
         status_c: student.status_c || "active",
         address_c: student.address_c || "",
         guardian_name_c: student.guardian_name_c || "",
-        guardian_contact_c: student.guardian_contact_c || ""
+        guardian_contact_c: student.guardian_contact_c || "",
+        notes_c: student.notes_c || ""
       });
     } else {
       setFormData({
@@ -47,7 +49,8 @@ useEffect(() => {
         status_c: "active",
         address_c: "",
         guardian_name_c: "",
-        guardian_contact_c: ""
+        guardian_contact_c: "",
+        notes_c: ""
       });
     }
     setErrors({});
@@ -210,6 +213,19 @@ value={formData.address_c}
                   onChange={(e) => handleChange("address_c", e.target.value)}
                   placeholder="Enter full address"
 />
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                    Notes
+                  </label>
+                  <textarea
+                    value={formData.notes_c}
+                    onChange={(e) => handleChange("notes_c", e.target.value)}
+                    placeholder="Enter any additional notes about the student"
+                    rows={4}
+                    className="w-full px-4 py-2.5 border-2 border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 resize-y"
+                  />
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <FormField
