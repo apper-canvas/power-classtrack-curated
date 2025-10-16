@@ -100,7 +100,7 @@ const CurriculumActivityModal = ({ isOpen, onClose, onSubmit, activity }) => {
     }
   };
 
-  if (!isOpen) return null;
+if (!isOpen) return null;
 
   return (
     <AnimatePresence>
