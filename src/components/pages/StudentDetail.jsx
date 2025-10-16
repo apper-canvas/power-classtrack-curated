@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
-import ApperIcon from "@/components/ApperIcon";
-import Button from "@/components/atoms/Button";
-import Badge from "@/components/atoms/Badge";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import Empty from "@/components/ui/Empty";
 import { studentService } from "@/services/api/studentService";
 import { attendanceService } from "@/services/api/attendanceService";
 import { gradeService } from "@/services/api/gradeService";
+import ApperIcon from "@/components/ApperIcon";
+import Loading from "@/components/ui/Loading";
+import Empty from "@/components/ui/Empty";
+import Error from "@/components/ui/Error";
+import Students from "@/components/pages/Students";
+import Attendance from "@/components/pages/Attendance";
+import Button from "@/components/atoms/Button";
+import Badge from "@/components/atoms/Badge";
 
 const StudentDetail = () => {
   const { id } = useParams();
@@ -219,7 +221,7 @@ const StudentDetail = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-lg font-bold text-slate-900 mb-4">Personal Information</h3>
-                  <div className="space-y-3">
+<div className="space-y-3">
                     <div className="flex justify-between py-2 border-b border-slate-100">
                       <span className="text-sm font-medium text-secondary">Date of Birth</span>
                       <span className="text-sm text-slate-900 font-semibold">
@@ -232,6 +234,34 @@ const StudentDetail = () => {
 {student.address_c}
                       </span>
                     </div>
+                  </div>
+                </div>
+
+                {/* Academic Performance Section */}
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                  <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <ApperIcon name="GraduationCap" size={20} className="text-primary" />
+                    Academic Performance
+                  </h3>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="bg-blue-50 rounded-lg p-4 border border-blue-100">
+                      <div className="text-sm font-medium text-secondary mb-1">Maths</div>
+                      <div className="text-2xl font-bold text-blue-600">
+                        {student.maths_c || "N/A"}
+                      </div>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4 border border-green-100">
+                      <div className="text-sm font-medium text-secondary mb-1">Chemistry</div>
+                      <div className="text-2xl font-bold text-green-600">
+                        {student.chemistry_c || "N/A"}
+                      </div>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4 border border-purple-100">
+                      <div className="text-sm font-medium text-secondary mb-1">History</div>
+                      <div className="text-2xl font-bold text-purple-600">
+                        {student.history_c || "N/A"}
+                      </div>
+</div>
                   </div>
                 </div>
 

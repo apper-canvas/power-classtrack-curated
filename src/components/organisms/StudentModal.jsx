@@ -17,7 +17,10 @@ const [formData, setFormData] = useState({
     address_c: "",
     guardian_name_c: "",
     guardian_contact_c: "",
-    notes_c: ""
+    notes_c: "",
+    maths_c: "",
+    chemistry_c: "",
+    history_c: ""
   });
 const [errors, setErrors] = useState({});
 
@@ -34,8 +37,11 @@ useEffect(() => {
         status_c: student.status_c || "active",
         address_c: student.address_c || "",
         guardian_name_c: student.guardian_name_c || "",
-        guardian_contact_c: student.guardian_contact_c || "",
-        notes_c: student.notes_c || ""
+guardian_contact_c: student.guardian_contact_c || "",
+        notes_c: student.notes_c || "",
+        maths_c: student.maths_c || "",
+        chemistry_c: student.chemistry_c || "",
+        history_c: student.history_c || ""
       });
     } else {
       setFormData({
@@ -49,8 +55,11 @@ useEffect(() => {
         status_c: "active",
         address_c: "",
         guardian_name_c: "",
-        guardian_contact_c: "",
-        notes_c: ""
+guardian_contact_c: "",
+        notes_c: "",
+        maths_c: "",
+        chemistry_c: "",
+        history_c: ""
       });
     }
     setErrors({});
@@ -206,13 +215,36 @@ onChange={(e) => handleChange("status_c", e.target.value)}
                     </select>
                   </div>
                 </div>
-
 <FormField
                   label="Address"
 value={formData.address_c}
                   onChange={(e) => handleChange("address_c", e.target.value)}
                   placeholder="Enter full address"
 />
+
+              <div className="grid grid-cols-3 gap-4">
+                <FormField
+                  label="Maths"
+                  type="number"
+                  value={formData.maths_c}
+                  onChange={(e) => handleChange("maths_c", e.target.value)}
+                  placeholder="Enter maths marks"
+                />
+                <FormField
+                  label="Chemistry"
+                  type="number"
+                  value={formData.chemistry_c}
+                  onChange={(e) => handleChange("chemistry_c", e.target.value)}
+                  placeholder="Enter chemistry marks"
+                />
+                <FormField
+                  label="History"
+                  type="number"
+                  value={formData.history_c}
+                  onChange={(e) => handleChange("history_c", e.target.value)}
+                  placeholder="Enter history marks"
+                />
+              </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">

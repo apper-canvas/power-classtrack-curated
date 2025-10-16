@@ -12,7 +12,7 @@ export const studentService = {
       });
 
 const params = {
-        fields: [
+fields: [
           {"field": {"Name": "Name"}},
           {"field": {"Name": "first_name_c"}},
           {"field": {"Name": "last_name_c"}},
@@ -26,6 +26,9 @@ const params = {
           {"field": {"Name": "guardian_contact_c"}},
           {"field": {"Name": "photo_c"}},
           {"field": {"Name": "science_marks_c"}},
+          {"field": {"Name": "maths_c"}},
+          {"field": {"Name": "chemistry_c"}},
+          {"field": {"Name": "history_c"}},
           {"field": {"name": "class_id_c"}, "referenceField": {"field": {"Name": "Name"}}}
         ]
       };
@@ -69,6 +72,9 @@ fields: [
           {"field": {"Name": "guardian_contact_c"}},
           {"field": {"Name": "photo_c"}},
           {"field": {"Name": "science_marks_c"}},
+          {"field": {"Name": "maths_c"}},
+          {"field": {"Name": "chemistry_c"}},
+          {"field": {"Name": "history_c"}},
           {"field": {"name": "class_id_c"}, "referenceField": {"field": {"Name": "Name"}}}
         ]
       };
@@ -110,8 +116,11 @@ const payload = {
           address_c: student.address_c,
           guardian_name_c: student.guardian_name_c,
           guardian_contact_c: student.guardian_contact_c,
-          photo_c: student.photo_c || "",
-          science_marks_c: student.science_marks_c ? parseInt(student.science_marks_c) : null
+photo_c: student.photo_c || "",
+          science_marks_c: student.science_marks_c ? parseInt(student.science_marks_c) : null,
+          maths_c: student.maths_c ? parseInt(student.maths_c) : null,
+          chemistry_c: student.chemistry_c ? parseInt(student.chemistry_c) : null,
+          history_c: student.history_c ? parseInt(student.history_c) : null
         }]
       };
 
@@ -198,8 +207,11 @@ return newStudent;
           ...(data.address_c !== undefined && { address_c: data.address_c }),
           ...(data.guardian_name_c && { guardian_name_c: data.guardian_name_c }),
           ...(data.guardian_contact_c && { guardian_contact_c: data.guardian_contact_c }),
-          ...(data.photo_c !== undefined && { photo_c: data.photo_c }),
-          ...(data.science_marks_c !== undefined && { science_marks_c: data.science_marks_c ? parseInt(data.science_marks_c) : null })
+...(data.photo_c !== undefined && { photo_c: data.photo_c }),
+          ...(data.science_marks_c !== undefined && { science_marks_c: data.science_marks_c ? parseInt(data.science_marks_c) : null }),
+          ...(data.maths_c !== undefined && { maths_c: data.maths_c ? parseInt(data.maths_c) : null }),
+          ...(data.chemistry_c !== undefined && { chemistry_c: data.chemistry_c ? parseInt(data.chemistry_c) : null }),
+          ...(data.history_c !== undefined && { history_c: data.history_c ? parseInt(data.history_c) : null })
         }]
       };
 
@@ -297,6 +309,9 @@ fields: [
           {"field": {"Name": "guardian_contact_c"}},
 {"field": {"Name": "photo_c"}},
           {"field": {"Name": "science_marks_c"}},
+          {"field": {"Name": "maths_c"}},
+          {"field": {"Name": "chemistry_c"}},
+          {"field": {"Name": "history_c"}},
           {"field": {"name": "class_id_c"}, "referenceField": {"field": {"Name": "Name"}}}
         ],
         whereGroups: {
