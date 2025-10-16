@@ -21,8 +21,8 @@ const [formData, setFormData] = useState({
 const [errors, setErrors] = useState({});
 
 useEffect(() => {
-if (student) {
-setFormData({
+    if (student) {
+      setFormData({
         first_name_c: student.first_name_c || "",
         last_name_c: student.last_name_c || "",
         email_c: student.email_c || "",
@@ -36,7 +36,7 @@ setFormData({
         guardian_contact_c: student.guardian_contact_c || ""
       });
     } else {
-setFormData({
+      setFormData({
         first_name_c: "",
         last_name_c: "",
         email_c: "",
@@ -51,11 +51,12 @@ setFormData({
       });
     }
     setErrors({});
+  }, [student]);
 
   const validateForm = () => {
     const newErrors = {};
 
-if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is required";
+    if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
