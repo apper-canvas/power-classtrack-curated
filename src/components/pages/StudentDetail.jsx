@@ -10,7 +10,6 @@ import Loading from "@/components/ui/Loading";
 import Empty from "@/components/ui/Empty";
 import Error from "@/components/ui/Error";
 import Students from "@/components/pages/Students";
-import Attendance from "@/components/pages/Attendance";
 import Button from "@/components/atoms/Button";
 import Badge from "@/components/atoms/Badge";
 
