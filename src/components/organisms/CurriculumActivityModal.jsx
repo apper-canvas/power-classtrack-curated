@@ -100,11 +100,10 @@ const CurriculumActivityModal = ({ isOpen, onClose, onSubmit, activity }) => {
     }
   };
 
-if (!isOpen) return null;
-
-  return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center">
+return (
+    <AnimatePresence mode="wait">
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -241,8 +240,9 @@ if (!isOpen) return null;
               </Button>
             </div>
           </form>
-        </motion.div>
-      </div>
+</motion.div>
+        </div>
+      )}
     </AnimatePresence>
   );
 };
