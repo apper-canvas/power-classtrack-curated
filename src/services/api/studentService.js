@@ -166,11 +166,10 @@ try {
           toast.warning("Student created but Clockify sync encountered an error");
         }
 
-        return newStudent;
+return newStudent;
       }
-
       throw new Error("No data returned from create operation");
-} catch (error) {
+    } catch (error) {
       console.error("Error creating student:", error?.message || error);
       return [];
     }
