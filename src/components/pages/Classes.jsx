@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import ApperIcon from "@/components/ApperIcon";
-import Button from "@/components/atoms/Button";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import Empty from "@/components/ui/Empty";
 import { classService } from "@/services/api/classService";
 import { studentService } from "@/services/api/studentService";
+import ApperIcon from "@/components/ApperIcon";
+import Loading from "@/components/ui/Loading";
+import Empty from "@/components/ui/Empty";
+import Error from "@/components/ui/Error";
+import Button from "@/components/atoms/Button";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const handleAddClass = () => {
+    toast.info("Add class functionality will be implemented soon");
+    // TODO: Open add class modal/form
+  };
 
   const loadData = async () => {
     try {
@@ -51,19 +56,19 @@ return students.filter(s => s.class_id_c?.Id === classId && s.status_c === "acti
           </h1>
           <p className="text-secondary">Manage class sections and student rosters</p>
         </div>
-        <Button variant="primary">
+<Button variant="primary" onClick={handleAddClass}>
           <ApperIcon name="Plus" size={18} className="mr-2" />
           Add Class
         </Button>
       </div>
 
-      {classes.length === 0 ? (
+{classes.length === 0 ? (
         <Empty
           icon="BookOpen"
           title="No Classes Found"
           message="Start by adding your first class to the system"
           actionLabel="Add First Class"
-          onAction={() => toast.info("Add class functionality coming soon")}
+          onAction={handleAddClass}
         />
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
