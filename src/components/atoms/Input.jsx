@@ -8,7 +8,7 @@ const Input = React.forwardRef(({
   ...props 
 }, ref) => {
   return (
-<input
+    <input
       type={type}
       ref={ref}
       className={cn(
