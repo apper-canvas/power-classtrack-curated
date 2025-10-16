@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { classService } from "@/services/api/classService";
 import { studentService } from "@/services/api/studentService";
 import ApperIcon from "@/components/ApperIcon";
+import ClassModal from "@/components/organisms/ClassModal";
 import Loading from "@/components/ui/Loading";
 import Empty from "@/components/ui/Empty";
 import Error from "@/components/ui/Error";
@@ -13,10 +14,32 @@ const Classes = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingClass, setEditingClass] = useState(null);
 
-  const handleAddClass = () => {
-    toast.info("Add class functionality will be implemented soon");
-    // TODO: Open add class modal/form
+const handleAddClass = () => {
+    setEditingClass(null);
+    setIsModalOpen(true);
+  };
+
+  const handleSubmitClass = async (classData) => {
+    try {
+      await classService.create(classData);
+      toast.success("Class added successfully");
+      setIsModalOpen(false);
+      
+      // Refresh classes list
+      const updatedClasses = await classService.getAll();
+      setClasses(updatedClasses);
+    } catch (error) {
+      // Error already handled by service
+      throw error;
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditingClass(null);
   };
 
   const loadData = async () => {
@@ -138,6 +161,12 @@ const classStudents = getClassStudents(classItem.Id);
           })}
         </div>
       )}
+<ClassModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmitClass}
+        classData={editingClass}
+      />
     </div>
   );
 };
