@@ -30,10 +30,6 @@ const Header = ({ onMenuClick }) => {
         </div>
 
 <div className="flex items-center gap-4">
-          <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors relative">
-            <ApperIcon name="Bell" size={20} className="text-secondary" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
-          </button>
           <button className="flex items-center gap-3 p-2 hover:bg-slate-100 rounded-lg transition-colors">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-bold">
