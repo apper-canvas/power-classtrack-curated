@@ -53,10 +53,20 @@ useEffect(() => {
     setErrors({});
   }, [student]);
 
-  const validateForm = () => {
+const validateForm = () => {
     const newErrors = {};
 
     if (!formData.first_name_c?.trim()) newErrors.first_name_c = "First name is required";
+    if (!formData.last_name_c?.trim()) newErrors.last_name_c = "Last name is required";
+    if (!formData.email_c?.trim()) {
+      newErrors.email_c = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email_c)) {
+      newErrors.email_c = "Invalid email format";
+    }
+    if (!formData.date_of_birth_c) newErrors.date_of_birth_c = "Date of birth is required";
+    if (!formData.enrollment_date_c) newErrors.enrollment_date_c = "Enrollment date is required";
+    if (!formData.status_c) newErrors.status_c = "Status is required";
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };

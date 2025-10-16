@@ -172,7 +172,7 @@ try {
       throw new Error("No data returned from create operation");
 } catch (error) {
       console.error("Error creating student:", error?.message || error);
-      throw new Error(error?.message || "Failed to create student");
+      return [];
     }
   },
 
