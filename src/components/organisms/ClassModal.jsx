@@ -5,12 +5,13 @@ import Button from "@/components/atoms/Button";
 import FormField from "@/components/molecules/FormField";
 
 const ClassModal = ({ isOpen, onClose, onSubmit, classData }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     name_c: "",
     year_c: "",
     section_c: "",
     capacity_c: "",
-    teacher_id_c: ""
+    teacher_id_c: "",
+    notes_c: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -18,20 +19,22 @@ const ClassModal = ({ isOpen, onClose, onSubmit, classData }) => {
 
   useEffect(() => {
     if (classData) {
-      setFormData({
+setFormData({
         name_c: classData.name_c || "",
         year_c: classData.year_c?.toString() || "",
         section_c: classData.section_c || "",
         capacity_c: classData.capacity_c?.toString() || "",
-        teacher_id_c: classData.teacher_id_c || ""
+        teacher_id_c: classData.teacher_id_c || "",
+        notes_c: classData.notes_c || ""
       });
     } else {
       setFormData({
-        name_c: "",
+name_c: "",
         year_c: "",
         section_c: "",
         capacity_c: "",
-        teacher_id_c: ""
+        teacher_id_c: "",
+        notes_c: ""
       });
     }
     setErrors({});
@@ -71,12 +74,13 @@ const ClassModal = ({ isOpen, onClose, onSubmit, classData }) => {
 
     setIsSubmitting(true);
     try {
-      const submitData = {
+const submitData = {
         name_c: formData.name_c.trim(),
         year_c: parseInt(formData.year_c),
         section_c: formData.section_c.trim(),
         capacity_c: formData.capacity_c ? parseInt(formData.capacity_c) : undefined,
-        teacher_id_c: formData.teacher_id_c?.trim() || undefined
+        teacher_id_c: formData.teacher_id_c?.trim() || undefined,
+        notes_c: formData.notes_c?.trim() || undefined
       };
       await onSubmit(submitData);
     } catch (error) {
@@ -184,7 +188,15 @@ const ClassModal = ({ isOpen, onClose, onSubmit, classData }) => {
                     disabled={isSubmitting}
                   />
                 </div>
-
+<FormField
+            label="Notes"
+            name="notes_c"
+            type="textarea"
+            rows={4}
+            placeholder="Add any additional notes about this class..."
+            value={formData.notes_c}
+            onChange={handleChange}
+          />
                 <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200">
                   <Button 
                     type="button" 
